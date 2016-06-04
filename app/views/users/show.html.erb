@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Accountname:</strong>
+  <%= @user.accountname %>
+</p>
+
+<p>
+  <strong>Facebook token:</strong>
+  <%= @user.facebook_token %>
+</p>
+
+<p>
+  <strong>Age:</strong>
+  <%= @user.age %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Sex:</strong>
+  <%= @user.sex %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @user.url %>
+</p>
+
+<p>
+  <strong>Passport:</strong>
+  <%= @user.passport_id %>
+</p>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

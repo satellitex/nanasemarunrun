@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Passports</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Passport</th>
+      <th>Lastupdated</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @passports.each do |passport| %>
+      <tr>
+        <td><%= passport.passport %></td>
+        <td><%= passport.lastupdated %></td>
+        <td><%= link_to 'Show', passport %></td>
+        <td><%= link_to 'Edit', edit_passport_path(passport) %></td>
+        <td><%= link_to 'Destroy', passport, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Passport', new_passport_path %>
