@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :addresses
   resources :rooms
   resources :users
-  root 'application#hello'
+  root  'users#new'
   namespace :api, default: {format: :json} do
     resources :chats, only: :create
   end
