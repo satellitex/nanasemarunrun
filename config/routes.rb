@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root  'session#index'
+  root  'users#index'
 
   resources :application
   
