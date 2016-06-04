@@ -5,6 +5,11 @@ class PassportsController < ApplicationController
   # GET /passports.json
   def index
     @passports = Passport.all
+    respond_to do | format |
+      format.html
+      format.json
+    end
+    
   end
 
   # GET /passports/1

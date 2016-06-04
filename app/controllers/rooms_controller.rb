@@ -5,6 +5,11 @@ class RoomsController < ApplicationController
   # GET /rooms.json
   def index
     @rooms = Room.all
+    respond_to do | format |
+      format.html
+      format.json
+    end
+    
   end
 
   # GET /rooms/1

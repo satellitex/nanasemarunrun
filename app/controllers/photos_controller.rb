@@ -5,6 +5,11 @@ class PhotosController < ApplicationController
   # GET /photos.json
   def index
     @photos = Photo.all
+    respond_to do | format |
+      format.html
+      format.json
+    end
+    
   end
 
   # GET /photos/1

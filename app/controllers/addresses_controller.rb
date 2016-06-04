@@ -5,6 +5,10 @@ class AddressesController < ApplicationController
   # GET /addresses.json
   def index
     @addresses = Address.all
+    respond_to do | format |
+      format.html
+      format.json
+    end
   end
 
   # GET /addresses/1

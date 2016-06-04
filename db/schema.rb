@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160604091924) do
+ActiveRecord::Schema.define(version: 20160604135524) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "country"
@@ -51,8 +51,9 @@ ActiveRecord::Schema.define(version: 20160604091924) do
     t.string   "sex"
     t.string   "url"
     t.integer  "passport_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "password_digest"
   end
 
 end
