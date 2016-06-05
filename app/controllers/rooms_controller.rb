@@ -65,6 +65,27 @@ class RoomsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  # room make API /api/makeroom
+  PREFECTURES = "prefectures"
+  COUNTRY = "country"
+  CITY = "city"
+  USER_ID = "user_id"
+  def make
+    if address = make_params
+      addr = Address.new( address )
+      if addr.save
+        userid = params[USER_ID]
+        addrid = addr.id
+        room = Room.new(user_id:userid,address_id:addrid)
+        if room.save
+          render json: { id: room.id }
+          return
+        end
+      end
+    end  
+    render json: { id:nil }
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -75,5 +96,23 @@ class RoomsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
       params.require(:room).permit(:user_id, :address_id)
+    end
+    
+    def make_params
+      if params[USER_ID].nil?
+        nil
+      elsif params[COUNTRY].nil?
+        nil
+      elsif params[CITY].nil?
+        nil
+      elsif params[PREFECTURES].nil?
+        nil
+      else
+        address = {}
+        address[COUNTRY] = params[COUNTRY]
+        address[CITY] = params[CITY]
+        address[PREFECTURES] = params[PREFECTURES]
+        address
+      end
     end
 end
