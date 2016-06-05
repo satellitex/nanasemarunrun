@@ -23,6 +23,27 @@
     <%= f.label :represent %><br>
     <%= f.check_box :represent %>
   </div>
+  <!-- 追加箇所 開始 -->
+  <div class="field">
+    <% if @photo.image? %>
+      <div class="thumbnail">
+        <%= image_tag @photo.image.url %>
+      </div>
+    <% end %><br>
+    <%= f.label :image %><br>
+    <%= f.file_field :image %>
+    <%= f.hidden_field :image_cache %>
+  </div>
+  <div class="field">
+    <!-- 既存レコード(DBに保存されている)かつ、画像が存在する場合 -->
+    <% if @photo.persisted? && @photo.image? %>
+      <label>
+        <%= f.check_box :remove_image %>
+        画像を削除
+      </label>
+    <% end %>
+  </div>
+  <!-- 追加箇所 終了 -->  
   <div class="actions">
     <%= f.submit %>
   </div>
