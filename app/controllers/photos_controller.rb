@@ -65,8 +65,43 @@ class PhotosController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  # POST /photos
+  # POST /photos.json
+  ROOM_ID = "room_id"
+  REPRESENT = "represent"
+  IMAGE = "image"
+  IMAGE_CACHE = "image_cache"
+  REMOVE_IMAGE = "remove_image"
+  def make
+    if photo = Photo.new(photo_params_mini)
+      if photo.save
+        render json: { image_url: photo.image.url, isroom: true }
+        return
+      end
+    end
+    render json: { image_url: nil, isroom: false }
+  end
+
 
   private
+  
+    def photo_params_mini
+      if params[ROOM_ID].nil?
+        nil
+      elsif params[REPRESENT].nil?
+        nil
+      elsif params[IMAGE].nil?
+        nil
+      else
+        phot = {}
+        phot[ROOM_ID] = params[ROOM_ID]
+        phot[REPRESENT] = params[REPRESENT]
+        phot[IMAGE] = params[IMAGE]
+        phot
+      end
+    end
+  
     # Use callbacks to share common setup or constraints between actions.
     def set_photo
       @photo = Photo.find(params[:id])
@@ -74,6 +109,6 @@ class PhotosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def photo_params
-      params.require(:photo).permit(:room_id, :img, :represent, :image_cache, :remove_image)
+      params.require(:photo).permit(:room_id, :img, :represent, :image, :image_cache, :remove_image)
     end
 end
