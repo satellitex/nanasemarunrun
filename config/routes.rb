@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :favorites
   root  'users#index'
 
   resources :application
@@ -6,6 +7,7 @@ Rails.application.routes.draw do
   get 'api/index' => 'session#index'
   get 'api/signup' => 'users#create'
   get 'api/makeroom'  => 'rooms#make'
+  get 'api/fav' => 'favorites#make'
   resources :session
 
   namespace :api, default: {format: :json} do

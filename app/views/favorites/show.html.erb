@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Room:</strong>
+  <%= @favorite.room_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @favorite.user_id %>
+</p>
+
+<p>
+  <strong>Senddate:</strong>
+  <%= @favorite.senddate %>
+</p>
+
+<%= link_to 'Edit', edit_favorite_path(@favorite) %> |
+<%= link_to 'Back', favorites_path %>
