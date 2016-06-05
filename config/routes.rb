@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'api/signup' => 'users#create'
   get 'api/makeroom'  => 'rooms#make'
   get 'api/fav' => 'favorites#make'
+  get 'api/countfav'  => 'favorites#count'
   resources :session
 
   namespace :api, default: {format: :json} do

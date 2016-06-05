@@ -76,12 +76,36 @@ class FavoritesController < ApplicationController
       render json: { id:favorite.id }
     end
   end
+  
+  def count
+    nums = get_fav_num
+    username = get_user_name
+    render json:{ count_fav: nums, user_name: username }
+  end
 
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_favorite
       @favorite = Favorite.find(params[:id])
+    end
+    
+    #ユーザー名を部屋の名前からとる
+    def get_user_name
+      if room = Room.find( params[ROOM_ID] )
+        User.find( room.user_id ).accountname
+      else
+        "none"
+      end
+    end
+    
+    # number of fav room_id
+    def get_fav_num
+      if params[ROOM_ID].nil?
+        0
+      else
+        Favorite.count( ROOM_ID: params[ROOM_ID] )
+      end
     end
 
     def fav_param
